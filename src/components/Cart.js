@@ -7,18 +7,41 @@ const Cart = (props) => {
     <div className="cart-container">
       <div className="cart-details" style={{ marginTop: "100px" }}>
         {shoppingCart.length > 0
-          ? shoppingCart.map((Cart) => (
-              <div className="cart" key={Cart.id}>
+          ? shoppingCart.map((cart) => (
+              <div className="cart" key={cart.id}>
                 <span className="cart-image">
-                  <img src={Cart.image} alt="Image" />
+                  <img src={cart.image} alt="Image" />
                 </span>
-                <span className="cart-product-name">{Cart.name}</span>
-                <span className="cart-product-price">${Cart.price}.00</span>
-                <span className="inc">+</span>
-                <span className="product-quantity">{Cart.qty}</span>
-                <span className="dec">-</span>
-                <span className="product-total-price">500.00</span>
-                <span className="delete-product">Delete</span>
+                <span className="cart-product-name">{cart.name}</span>
+                <span className="cart-product-price">${cart.price}.00</span>
+                <span
+                  className="inc"
+                  onClick={() =>
+                    dispatch({ type: "INC", id: cart.id, cart: cart })
+                  }
+                >
+                  +
+                </span>
+                <span className="product-quantity">{cart.qty}</span>
+                <span
+                  className="dec"
+                  onClick={() =>
+                    dispatch({ type: "DEC", id: cart.id, cart: cart })
+                  }
+                >
+                  -
+                </span>
+                <span className="product-total-price">
+                  ${cart.price * cart.qty}.00
+                </span>
+                <span
+                  className="delete-product"
+                  onClick={() =>
+                    dispatch({ type: "DELETE", id: cart.id, cart: cart })
+                  }
+                >
+                  Delete
+                </span>
               </div>
             ))
           : "your cart is empty"}
