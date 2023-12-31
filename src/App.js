@@ -6,19 +6,22 @@ import ProductsContextProvider from "./Global/ProductsContext";
 import Products from "./components/Products";
 import Cart from "./components/Cart";
 import NotFound from "./components/NotFound";
+import CartContextProvider from "./Global/CartContext";
 function App() {
   return (
     <div>
       <ProductsContextProvider>
-        <Router>
-          <Navbar />
+        <CartContextProvider>
+          <Router>
+            <Navbar />
 
-          <Routes>
-            <Route path="/" exact Component={Products} />
-            <Route path="/cart" exact Component={Cart} />
-            <Route path="*" Component={NotFound} />
-          </Routes>
-        </Router>
+            <Routes>
+              <Route path="/" exact Component={Products} />
+              <Route path="/cart" exact Component={Cart} />
+              <Route path="*" Component={NotFound} />
+            </Routes>
+          </Router>
+        </CartContextProvider>
       </ProductsContextProvider>
     </div>
   );
